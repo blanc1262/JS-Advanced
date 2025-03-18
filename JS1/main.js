@@ -153,7 +153,7 @@ function iterateNumbers() {
             tbl.appendChild(tr);
 
             if(!(numbersArr.length == 0)) {
-                document.getElementById("btn4").style.display = "block";
+                document.getElementById("btn4").style.display = "inline";
             }
             
             total += numbersArr[i];
