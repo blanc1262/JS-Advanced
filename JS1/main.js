@@ -11,7 +11,7 @@ let numbersArr = new Array();
 function insertNumber() {
     const txtNumber = document.getElementById("txtNum").value;
     let num;
-    let regex = /^[0-9]+$/;
+    let regex = /^[0-9]+$/; // positive number only
 
     if(txtNumber.match(regex)){
         num = parseInt(txtNumber);
@@ -26,7 +26,7 @@ function insertNumber() {
             numbersArr.sort((a, b) => b - a);
         }
     } else {
-        alert("Please input a positive number");
+        alert("pagtarong diha uy! positive number lang!");
         document.getElementById("txtNum").value = "";
         return;
     }
