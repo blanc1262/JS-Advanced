@@ -147,9 +147,15 @@ function iterateNumbers() {
 
         total = numbersArr.reduce((acc, num) => acc + num, 0);
         document.getElementById("btn4").style.display = "inline";
+        document.getElementById("btn5").style.display = "inline";
+        document.getElementById("sortOptions").style.display = "inline";
+        document.querySelector("label[for='sortOptions']").style.display = "inline";
     } else {
         total = 0;
         document.getElementById("btn4").style.display = "none";
+        document.getElementById("btn5").style.display = "none";
+        document.getElementById("sortOptions").style.display = "none";
+        document.querySelector("label[for='sortOptions']").style.display = "none";
     }
 
 }
