@@ -22,7 +22,6 @@
                 <input type="text" id="txtNum">
             </td>
         </tr>
-
         <tr>
             <td colspan="2">
                 <button id="btn1">Insert</button>
@@ -33,12 +32,24 @@
     <br>
     <fieldset>
         <legend>Inserted Numbers</legend>
-        <table id="tblNumbers">
-        </table>
+        <table id="tblNumbers"></table>
     </fieldset>
 
     <button id="btn3" style="margin-top: 10px;">Clear Items</button>
     <button id="btn4" style="margin-top: 10px; display: none;">Get Total</button>
+    
+    <tr>
+        <td colspan="2">
+            <button id="btn5">Identify Highest and Lowest Number</button>
+            <label for="sortOptions">Sort by:</label>
+            <select id="sortOptions">
+                <option value="">Please select</option>
+                <option value="asc">Ascending</option>
+                <option value="desc">Descending</option>
+            </select>
+        </td>
+    </tr>
+
     <script src="main.js"></script>
 </body>
 </html>
