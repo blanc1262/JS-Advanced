@@ -1,42 +1,39 @@
-import getUserInput from "./modules.js";
-import { Calculator, convertToJson, saveToLocalStorage, getFromLocalStorage, isPositive, operateOnNumbers, fetchData } from "./modules.js"
+document.getElementById("loadData").addEventListener("click", loadData);
+document.getElementById("clearTable").addEventListener("click", clearTable);
 
-// Main Program
-document.addEventListener("DOMContentLoaded", async () => {
-    // User Input
-    const number = getUserInput();
-    
-    // Ternary Operator
-    const isPositiveNumber = isPositive(number);
+function loadData() {
+  fetch("https://jsonplaceholder.typicode.com/todos")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      const table = document.getElementById("dataTable");
+      const tableBody = document.getElementById("tableBody");
+      table.style.display = "table"; // Show the table
+      tableBody.innerHTML = ""; // Clear existing data
+      data.forEach((todo) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${todo.userId}</td>
+          <td>${todo.id}</td>
+          <td>${todo.title}</td>
+          <td style="color: ${todo.completed ? "green" : "red"};">
+            ${todo.completed ? "Completed" : "Not yet Completed"}
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    })
+    .catch((error) => {
+      console.error("There was a problem with the fetch operation:", error);
+    });
+}
 
-    // Classes
-    const resultAddition = Calculator.add(5, 3);
-    const resultSubtraction = Calculator.subtract(10, 7);
-
-    // JSON
-    const jsonData = { key: "value" };
-    const jsonString = convertToJson(jsonData);
-
-    // Web Storage
-    saveToLocalStorage("savedData", jsonString);
-    const retrievedData = getFromLocalStorage("savedData");
-
-    // Higher Order Functions
-    const sum = operateOnNumbers(4, 6, (a, b) => a + b);
-    const difference = operateOnNumbers(8, 3, (a, b) => a - b);
-
-    // Fetch API (Async/Await)
-    const apiUrl = "https://jsonplaceholder.typicode.com/todos/";
-    const fetchedData = await fetchData(apiUrl);
-
-    // Display Results
-    console.log("User Input:", number);
-    console.log("Is Positive Number:", isPositiveNumber);
-    console.log("Result Addition:", resultAddition);
-    console.log("Result Subtraction:", resultSubtraction);
-    console.log("JSON String:", jsonString);
-    console.log("Retrieved Data from Local Storage:", retrievedData);
-    console.log("Sum:", sum);
-    console.log("Difference:", difference);
-    console.log("Fetched Data:", fetchedData);
-});
+function clearTable() {
+  const table = document.getElementById("dataTable");
+  document.getElementById("tableBody").innerHTML = "";
+  table.style.display = "none"; 
+}
